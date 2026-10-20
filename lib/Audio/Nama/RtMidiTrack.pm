@@ -30,7 +30,7 @@ use Audio::Nama::Globals qw(:all);
 use Audio::Nama::Object qw( rt_input rt_output rt_thru );
 use Audio::Nama::RtMidiTrack::NullOut;
 
-no warnings qw(uninitialized redefine);
+no warnings qw(redefine);
 
 our $VERSION = 1.0;
 
