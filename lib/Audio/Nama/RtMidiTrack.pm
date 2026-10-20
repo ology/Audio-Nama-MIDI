@@ -17,9 +17,10 @@
 # being recorded) lives in file-level hashes, never in the track hash, so
 # save_state serializes only plain settings.
 
-package Audio::Nama::RtMidiTrack '1.000';
+package Audio::Nama::RtMidiTrack;
 
 use v5.36;
+use Carp qw(croak);
 use File::Path qw(make_path);
 use JSON::PP ();
 use List::Util qw(max);
