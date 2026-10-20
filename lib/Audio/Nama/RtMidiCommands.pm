@@ -1,4 +1,4 @@
-package Audio::Nama::RtMidiCommands;
+package Audio::Nama;
 
 use v5.36;
 use List::Util qw(max);

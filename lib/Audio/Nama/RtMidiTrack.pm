@@ -20,7 +20,6 @@
 package Audio::Nama::RtMidiTrack;
 
 use v5.36;
-use Carp qw(carp croak);
 use File::Path qw(make_path);
 use JSON::PP ();
 use List::Util qw(max);
