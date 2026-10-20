@@ -132,7 +132,10 @@ sub rt_configure {
 		$self->set($field => $kv{$key});
 		# start listening as soon as the input is known, so the port is
 		# already open when the first take begins
-		_listener($self->{rt_input}) if $field eq 'rt_input';
+		if ($field eq 'rt_input') {
+			eval { _listener($self->{rt_input}); 1 }
+				or Audio::Nama::throw("cannot listen on '$self->{rt_input}': " . ($@ =~ s/\n\z//r)), return;
+		}
 	}
 	1
 }
@@ -282,7 +285,7 @@ sub _listener ($port) {
 			silent   => 1,
 		);
 		$rtc->add_filter(rt_record => \@RECORDED,
-			sub ($p, $dt, $event) { _on_event($port, $dt, $event) });
+			sub ($p, $dt, $event, @) { _on_event($port, $dt, $event) });
 		{ rtc => $rtc }
 	};
 	1
