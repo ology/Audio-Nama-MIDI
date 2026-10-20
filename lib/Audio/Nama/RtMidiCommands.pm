@@ -1,15 +1,15 @@
-package Audio::Nama;
+package Audio::Nama::RtMidiCommands;
 
 use v5.36;
 use List::Util qw(max);
 use Audio::Nama::Globals qw(:all);
 
-sub rt_tracks { grep { $_->isa('Audio::Nama::RtMidiTrack') } all_tracks() }
+sub rt_tracks { grep { $_ isa Audio::Nama::RtMidiTrack } all_tracks() }
 
 sub this_rt_track {
-	$this_track and $this_track->isa('Audio::Nama::RtMidiTrack') and return $this_track;
-	throw("Current track is not a MIDI take track. See add_rt_track.");
-	return;
+    return $this_track if $this_track isa Audio::Nama::RtMidiTrack;
+    throw("Current track is not a MIDI take track. See add_rt_track.");
+    return;
 }
 
 sub add_rt_track ($name, @params) {

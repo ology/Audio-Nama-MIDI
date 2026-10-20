@@ -28,6 +28,7 @@ use Time::HiRes ();
 use parent -norequire, 'Audio::Nama::Track';  # before Object import: keeps @ISA
 use Audio::Nama::Globals qw(:all);
 use Audio::Nama::Object qw( rt_input rt_output rt_thru );
+use Audio::Nama::RtMidiTrack::NullOut;
 
 no warnings qw(uninitialized redefine);
 
