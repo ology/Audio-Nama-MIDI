@@ -17,7 +17,7 @@
 # being recorded) lives in file-level hashes, never in the track hash, so
 # save_state serializes only plain settings.
 
-package Audio::Nama::RtMidiTrack;
+package Audio::Nama::RtMidiTrack '1.000';
 
 use v5.36;
 use File::Path qw(make_path);
@@ -30,8 +30,6 @@ use Audio::Nama::Object qw( rt_input rt_output rt_thru );
 use Audio::Nama::RtMidiTrack::NullOut;
 
 no warnings qw(redefine);
-
-our $VERSION = 1.0;
 
 # event types captured from the controller. 'clock', 'start' and 'stop'
 # are deliberately absent. Extend this list if you want more recorded.
