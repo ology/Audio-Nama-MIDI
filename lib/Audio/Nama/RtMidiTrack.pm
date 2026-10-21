@@ -61,7 +61,7 @@ sub remove {
 
 # ---- Track interface overrides ----
 
-sub rec_status { OFF }           # nothing for the audio engine to do
+sub rec_status { OFF } # nothing for the audio engine to do
 # Graph building (Track::input_path, ChainSetup) asks candidate_rw, not
 # rec_status. OFF keeps this track out of the Ecasound graph, the same
 # way Audio::Nama::MidiTrack does.
