@@ -1,6 +1,6 @@
 # Audio::Nama::MIDI
 
-Files to shoe-horn into Audio::Nama.
+Files to shoe-horn into Audio::Nama
 
 ## Installation
 ```shell
