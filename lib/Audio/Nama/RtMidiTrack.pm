@@ -13,7 +13,8 @@
 # (Tickit::Async runs on IO::Async::Loop->new, the process-wide loop).
 #
 # Like the other non-audio tracks, rec_status is always OFF, so ChainSetup
-# and Ecasound never see it. Runtime state (listeners, timers, the take
+# and Ecasound never see it. candidate_rw is always OFF. Runtime state
+# (listeners, timers, the take
 # being recorded) lives in file-level hashes, never in the track hash, so
 # save_state serializes only plain settings.
 
@@ -74,6 +75,10 @@ sub remove {
 # ---- Track interface overrides ----
 
 sub rec_status { OFF }           # nothing for the audio engine to do
+# Graph building (Track::input_path, ChainSetup) asks candidate_rw, not
+# rec_status. OFF keeps this track out of the Ecasound graph, the same
+# way Audio::Nama::MidiTrack does.
+sub candidate_rw ($self) { OFF }
 sub rec_status_display {
 	my $self = shift;
 	$REC{ $self->name }  ? 'REC'
@@ -86,10 +91,10 @@ sub select_track {               # no Ecasound chain to select
 	$Audio::Nama::this_track = $self;
 	Audio::Nama::set_current_bus();
 }
-sub set_rw {
-	my ($self, $setting) = @_;
-	$self->{rw} = $setting;
+sub set_rw ($self, $setting, @) {
+	$self->{rw} = $setting eq OFF ? OFF : MON;   # REC/PLAY/MON all mean "on"
 	$self->stop if $setting eq OFF;
+	Audio::Nama::notify('Track ', $self->name, " set to $self->{rw}");
 }
 sub rw_set { my ($self, $bus, $setting) = @_; $self->set_rw($setting) }
 sub mute   { $_[0]->set_rw(OFF) }
