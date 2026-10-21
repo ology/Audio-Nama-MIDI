@@ -1,8 +1,3 @@
-# ---------- RtMidiTrack: real-time MIDI track with saved takes ----------
-#
-# Install as lib/Audio/Nama/RtMidiTrack.pm (drop the .txt suffix).
-# Supersedes the earlier ArpTrack module.
-#
 # Each recording attempt is saved as a numbered "take" (a version, like WAV
 # versions): <project>/.rtmidi/<track>_<n>.json. Takes can be listed,
 # selected (Nama's usual 'version N' command), played back, and merged into
@@ -11,12 +6,6 @@
 # Live input comes from MIDI::RtController, which reads the port in a
 # separate worker process and delivers events on Nama's IO::Async loop
 # (Tickit::Async runs on IO::Async::Loop->new, the process-wide loop).
-#
-# Like the other non-audio tracks, rec_status is always OFF, so ChainSetup
-# and Ecasound never see it. candidate_rw is always OFF. Runtime state
-# (listeners, timers, the take
-# being recorded) lives in file-level hashes, never in the track hash, so
-# save_state serializes only plain settings.
 
 package Audio::Nama::RtMidiTrack;
 
@@ -53,8 +42,6 @@ my %IN;    # input port name  => { rtc }
 my %OUT;   # output port name => { dev, users }
 my %REC;   # track name       => recording state
 my %PLAY;  # track name       => playback state
-
-# ---- construction ----
 
 # Track::new rejects fields it doesn't know, so strip ours first
 sub new {
