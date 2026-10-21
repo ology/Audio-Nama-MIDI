@@ -2,7 +2,7 @@
 
 Files to shoe-horn into Audio::Nama.
 
-## Installation in a `~/repos` directory:
+## Installation
 ```shell
 cd ~/repos
 git clone https://github.com/ology/Audio-Nama-MIDI.git
