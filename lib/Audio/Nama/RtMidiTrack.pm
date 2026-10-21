@@ -73,13 +73,13 @@ sub rec_status_display {
 	: $self->rw eq OFF   ? OFF
 	:                      'MIDI'
 }
-sub select_track {               # no Ecasound chain to select
+sub select_track { # no Ecasound chain to select
 	my $self = shift;
 	$Audio::Nama::this_track = $self;
 	Audio::Nama::set_current_bus();
 }
 sub set_rw ($self, $setting, @) {
-	$self->{rw} = $setting eq OFF ? OFF : MON;   # REC/PLAY/MON all mean "on"
+	$self->{rw} = $setting eq OFF ? OFF : MON; # REC/PLAY/MON all mean "on"
 	$self->stop if $setting eq OFF;
 	Audio::Nama::notify('Track ', $self->name, " set to $self->{rw}");
 }
@@ -261,7 +261,7 @@ sub _on_event ($port, $dt, $event) {
 		_track_held($st->{held}, @$event);
 		$st->{out}->send_event(@$event) if $st->{out};   # thru
 	}
-	return 1;   # handled; RtController is silent, nothing else is forwarded
+	return 1; # handled; RtController is silent, nothing else is forwarded
 }
 
 # one RtController (hence one worker process) per input port, kept for the
@@ -402,6 +402,6 @@ sub stop_all {
 	_end_play($_, 'stopped')  for values %PLAY;
 }
 
-END { eval { stop_all() } }   # don't leave hanging notes or lose a take
+END { eval { stop_all() } } # don't leave hanging notes or lose a take
 
 1;
