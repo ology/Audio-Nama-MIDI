@@ -25,8 +25,8 @@ use IO::Async::Loop::Select;
 use IO::Socket; 
 use IO::Select;
 use IPC::Open3;
-use MIDI::RtMidi::FFI (); # GB
 use MIDI::RtController (); # GB
+use MIDI::RtMidi::FFI (); # GB
 use Module::Load::Conditional qw(can_load); 
 use Module::Load;
 use Parse::RecDescent;
