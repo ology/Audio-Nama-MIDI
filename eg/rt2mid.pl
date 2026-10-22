@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 
 # Convert an rt-midi take (.rtmidi/<track>_<n>.json) to a standard MIDI file.
-# usage: perl rt2mid.pl ~/nama/Untitled/.rtmidi/best_1.json some.mid
+# Usage: perl rt2mid.pl ~/nama/Untitled/.rtmidi/best_1.json some.mid
 
 use v5.36;
 use JSON::PP qw(decode_json);
