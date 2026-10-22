@@ -18,7 +18,7 @@ ln -s ~/repos/Audio-Nama-MIDI/lib/Audio/Nama/RtMidiTrack/NullOut.pm
 
 ## Usage
 ```
-add_rt_track keys
+add_rt_track test
 rt_set input pad
 rt_set output synth
 rt_record
